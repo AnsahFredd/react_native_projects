@@ -1,5 +1,6 @@
 import { DecorativeCircles } from "@/shared/components/DecorativeCircles";
 import { COLORS, FONTS } from "@/shared/constants";
+import { StatusBar } from "expo-status-bar";
 import {
   Dimensions,
   Image,
@@ -15,6 +16,7 @@ const { height } = Dimensions.get("window");
 export default function Index() {
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
       <DecorativeCircles />
 
       <SafeAreaView style={styles.safeArea}>
