@@ -1,6 +1,7 @@
 import { DecorativeCircles } from "@/shared/components/DecorativeCircles";
 import { COLORS, FONTS } from "@/shared/constants";
 import { StatusBar } from "expo-status-bar";
+import { Link, useRouter } from "expo-router";
 import {
   Dimensions,
   Image,
@@ -10,10 +11,14 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { CONFIG } from "@/shared/constants/config";
 
 const { height } = Dimensions.get("window");
 
 export default function Index() {
+  const router = useRouter();
+
+  
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
@@ -39,12 +44,15 @@ export default function Index() {
             </View>
 
             <View style={styles.buttonContainer}>
+              <Link href={CONFIG.ROUTES.REGISTER} asChild>
               <TouchableOpacity
+             
                 style={styles.primaryButton}
                 activeOpacity={0.8}
               >
                 <Text style={styles.primaryButtonText}>Get Started</Text>
               </TouchableOpacity>
+              </Link>
             </View>
           </View>
         </View>

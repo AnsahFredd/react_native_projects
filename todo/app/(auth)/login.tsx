@@ -1,9 +1,12 @@
 import { Text, View } from "react-native";
+import { Login } from "../../features/auth/components/login";
 
-export const Login = () => {
+const LoginPage = () => {
   return (
     <View>
-      <Text>Login </Text>
+      <Login />
     </View>
   );
 };
+
+export default LoginPage;

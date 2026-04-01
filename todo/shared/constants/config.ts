@@ -1,21 +1,29 @@
 export const CONFIG = {
   API_URL: process.env.EXPO_PUBLIC_API_URL ?? "https://api.yourapp.com",
 
-  ENDPOINTS: {
-    // Auth
-    LOGIN: "/auth/login",
-    REGISTER: "/auth/register",
-    RESET_PASSWORD: "/auth/reset-password",
-    LOGOUT: "/auth/logout",
+  // App ]n routes
+  ROUTES: {
+    
+    LOGIN: "/(auth)/login",
+    REGISTER: "/(auth)/register",
+    RESET_PASSWORD: "/(auth)/reset-password",
+  },
 
-    // User
-    PROFILE: "/user/profile",
-    UPDATE_PROFILE: "/user/update",
-
-    // Todos
-    TODOS: "/todos",
-    TODO_BY_ID: (id: string) => `/todos/${id}`,
-    CREATE_TODO: "/todos/create",
-    DELETE_TODO: (id: string) => `/todos/${id}`,
+  // API endpoints
+  API: {
+    AUTH: {
+      REGISTER: "/auth/register",
+      LOGIN: "/auth/login",
+      LOGOUT: "/auth/logout",
+      ME: "/auth/me",
+    },
+    USER: {
+      PROFILE: "/user/profile",
+      UPDATE: "/user/update",
+    },
+    TODOS: {
+      BASE: "/todos",
+      BY_ID: (id: string) => `/todos/${id}`,
+    },
   },
 } as const;

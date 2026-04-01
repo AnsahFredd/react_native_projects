@@ -1,9 +1,12 @@
+import { ResetPassword } from "@/features/auth/components/reset-password";
 import { Text, View } from "react-native";
 
-export const ResetPassword = () => {
+const ResetPasswordPage = () => {
   return (
     <View>
-      <Text>Reset Password </Text>
+      <ResetPassword />
     </View>
   );
 };
+
+export default ResetPasswordPage;

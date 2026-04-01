@@ -1,9 +1,16 @@
+import { Register } from "@/features/auth/components/register";
+import { DecorativeCircles } from "@/shared/components/DecorativeCircles";
 import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Register = () => {
+const RegisterPage = () => {
   return (
-    <View>
-      <Text>Reset Password </Text>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <DecorativeCircles />
+      <Register />
+    </SafeAreaView>
   );
 };
+
+
+export default RegisterPage;
