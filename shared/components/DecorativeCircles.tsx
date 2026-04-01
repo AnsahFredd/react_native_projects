@@ -8,11 +8,10 @@ const { width } = Dimensions.get("window");
  * Optimized to be soft, translucent, and clearly three distinct layers.
  */
 export const DecorativeCircles = () => {
-  const size = width * 0.6; // Slightly larger for that "sweep" effect
+  const size = width * 0.6;
 
   return (
     <View style={styles.container} pointerEvents="none">
-      {/* 1. Left Light Circle (The aura) */}
       <View
         style={[
           styles.circle,
@@ -26,7 +25,6 @@ export const DecorativeCircles = () => {
         ]}
       />
 
-      {/* 2. Top Light Circle (The aura) */}
       <View
         style={[
           styles.circle,
@@ -40,7 +38,6 @@ export const DecorativeCircles = () => {
         ]}
       />
 
-      {/* 3. Deep Middle Circle (The anchor) */}
       <View
         style={[
           styles.circle,
@@ -73,7 +70,7 @@ const styles = StyleSheet.create({
   },
   deep: {
     backgroundColor: "#7FE3D8",
-    opacity: 0.35, // Very soft
+    opacity: 0.35,
   },
   light: {
     backgroundColor: "#BAEBE9",
