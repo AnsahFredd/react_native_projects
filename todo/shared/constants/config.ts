@@ -3,12 +3,11 @@ export const CONFIG = {
 
   // App ]n routes
   ROUTES: {
-    
     LOGIN: "/(auth)/login",
     REGISTER: "/(auth)/register",
     RESET_PASSWORD: "/(auth)/reset-password",
     HOME: "/home",
-     PROFILE: "/profile",
+    PROFILE: "/profile",
      SETTINGS: "/settings",
   },
 
