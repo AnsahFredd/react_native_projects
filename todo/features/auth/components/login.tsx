@@ -76,7 +76,7 @@ export const Login = () => {
         </TouchableOpacity>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Don't have an account? </Text>
+          <Text style={styles.footerText}>{"Don't have an account? "}</Text>
           <Link href={CONFIG.ROUTES.REGISTER}>
             <Text style={styles.signInText}>Sign Up</Text>
           </Link>

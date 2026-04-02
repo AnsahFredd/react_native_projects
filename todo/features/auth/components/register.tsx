@@ -44,7 +44,7 @@ export const Register = () => {
       <View style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.title}>Welcome Onboard!</Text>
-          <Text style={styles.subtitle}>Let's help you meet up your tasks</Text>
+          <Text style={styles.subtitle}>{"Let's help you meet up your tasks"}</Text>
         </View>
 
         <View style={styles.form}>
