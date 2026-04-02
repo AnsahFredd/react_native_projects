@@ -1,12 +1,16 @@
-import { Text, View } from "react-native";
-import { Login } from "../../features/auth/components/login";
+import { Login } from "@/features/auth/components/login";
+import { Register } from "@/features/auth/components/register";
+import { DecorativeCircles } from "@/shared/components/DecorativeCircles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginPage = () => {
   return (
-    <View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <DecorativeCircles />
       <Login />
-    </View>
+    </SafeAreaView>
   );
 };
+
 
 export default LoginPage;

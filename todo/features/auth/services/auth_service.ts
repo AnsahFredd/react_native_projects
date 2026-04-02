@@ -12,6 +12,9 @@ export const loginUser = async (credentials: LoginRequest) => {
         if (!response.user) {
             throw new Error("Invalid user");
         }
+        if(!response.accessToken) {
+            throw new Error("Invalid access token");
+        }
 
         return response;
 
@@ -29,6 +32,10 @@ export const RegisterUser =async (credentials: RegisterRequest) => {
         const response = await register(credentials);
         if (!response.user) {
             throw new Error("Registration failed");
+        }
+
+        if(!response.accessToken) {
+            throw new Error("Invalid access token");
         }
 
         return response;
@@ -51,6 +58,9 @@ export const fetchCurrentUser = async (): Promise<AuthResponse> => {
         const response = await getCurrentUser();
         if (!response.user) {
             throw new Error("Failed to fetch user");
+        }
+        if(!response.accessToken) {
+            throw new Error("Invalid access token");
         }
         return response;
     } catch (error) {

@@ -7,6 +7,9 @@ export const CONFIG = {
     LOGIN: "/(auth)/login",
     REGISTER: "/(auth)/register",
     RESET_PASSWORD: "/(auth)/reset-password",
+    HOME: "/home",
+     PROFILE: "/profile",
+     SETTINGS: "/settings",
   },
 
   // API endpoints

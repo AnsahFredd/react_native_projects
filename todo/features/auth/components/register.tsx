@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   content: {
+    marginTop: 150,
     width: "100%",
     padding: 24,
     gap: 16,

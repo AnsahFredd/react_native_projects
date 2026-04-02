@@ -12,13 +12,13 @@ export const FONTS = {
     xlarge: 24,
   },
   lineHeight: {
-    tight: 1.15, // ← your design uses 115%
+    tight: 1.15, 
     normal: 1.5,
     relaxed: 1.75,
   },
   letterSpacing: {
     tight: 0,
-    normal: 0.06, // ← your design uses 6%
+    normal: 0.06, 
     wide: 0.1,
   },
 } as const;
