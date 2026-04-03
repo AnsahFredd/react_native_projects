@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F8F9FA",
+    
   },
   safeArea: {
     flex: 1,
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     justifyContent: "center",
     paddingBottom: 20,
+    marginTop: 80,
   },
   imageSection: {
     justifyContent: "center",

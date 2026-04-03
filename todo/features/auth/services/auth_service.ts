@@ -23,7 +23,7 @@ export const loginUser = async (credentials: LoginRequest) => {
     }
 }
 
-export const RegisterUser =async (credentials: RegisterRequest) => {
+export const RegisterUser = async (credentials: RegisterRequest) => {
     try {
         if(!credentials.email || !credentials.password || !credentials.name) {
             throw new Error("Email, password and name are required");

@@ -1,7 +1,18 @@
 import { FormInput } from "@/shared/components/Form";
 import { COLORS, FONTS } from "@/shared/constants";
 import { useReducer } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  ScrollView,
+  Platform,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+} from "react-native";
 import { Link, useRouter } from "expo-router";
 import { CONFIG } from "@/shared/constants/config";
 import { loginUser } from "@/features/auth/services/auth_service";
@@ -43,58 +54,72 @@ export const Login = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.header}>
-            <Text style={styles.title}>Welcome back</Text>
-          <Image style={styles.image} source={require("@/assets/images/login_img.png")}/>
-        </View>
-
-        <View style={styles.form}>
-        
-          <FormInput
-            placeholder="Enter your email"
-            onChangeText={handleChange("email")}
-            value={form.email}
-            keyboardType="email-address"
-          />
-          <FormInput
-            placeholder="Enter password"
-            onChangeText={handleChange("password")}
-            value={form.password}
-            secureTextEntry
-          />
-          
-        </View>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleLogin}
-          activeOpacity={0.8}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          <View style={{ flex: 1, minHeight: 150 }} />
+          <View style={styles.content}>
+            <View style={styles.header}>
+              <Text style={styles.title}>Welcome back</Text>
+              <Image
+                style={styles.image}
+                source={require("@/assets/images/login_img.png")}
+              />
+            </View>
 
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>{"Don't have an account? "}</Text>
-          <Link href={CONFIG.ROUTES.REGISTER}>
-            <Text style={styles.signInText}>Sign Up</Text>
-          </Link>
-        </View>
-      </View>
-    </View>
+            <View style={styles.form}>
+              <FormInput
+                placeholder="Enter your email"
+                onChangeText={handleChange("email")}
+                value={form.email}
+                keyboardType="email-address"
+              />
+              <FormInput
+                placeholder="Enter password"
+                onChangeText={handleChange("password")}
+                value={form.password}
+                secureTextEntry
+              />
+            </View>
+
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleLogin}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>{"Don't have an account? "}</Text>
+              <Link href={CONFIG.ROUTES.REGISTER}>
+                <Text style={styles.signInText}>Sign Up</Text>
+              </Link>
+            </View>
+          </View>
+          <View style={{ flex: 1 }} />
+        </ScrollView>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   content: {
-    flex: 1,
-    marginTop: 150,
     alignItems: "center",
     justifyContent: "center",
     width: "100%",

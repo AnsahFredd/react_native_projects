@@ -19,12 +19,13 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <Stack>
+    <>
       <StatusBar style="auto" />
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} /> 
-        <Stack.Screen name="home" options={{ headerShown: false }} />
-
-    </Stack>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="home/index" options={{ headerShown: false }} />
+      </Stack>
+    </>
   );
 }
