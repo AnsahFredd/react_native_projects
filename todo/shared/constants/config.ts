@@ -1,5 +1,6 @@
+const API_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:3000/api";
+
 export const CONFIG = {
-  API_URL: process.env.EXPO_PUBLIC_API_URL ?? "https://api.yourapp.com",
 
   // App ]n routes
   ROUTES: {
@@ -14,18 +15,18 @@ export const CONFIG = {
   // API endpoints
   API: {
     AUTH: {
-      REGISTER: "/auth/register",
-      LOGIN: "/auth/login",
-      LOGOUT: "/auth/logout",
-      ME: "/auth/me",
+      REGISTER: `${API_URL}/auth/register`,
+      LOGIN: `${API_URL}/auth/login`,
+      LOGOUT: `${API_URL}/auth/logout`,
+      ME: `${API_URL}/auth/me`,
     },
     USER: {
-      PROFILE: "/user/profile",
-      UPDATE: "/user/update",
+      PROFILE: `${API_URL}/user/profile`,
+      UPDATE: `${API_URL}/user/update`,
     },
     TODOS: {
-      BASE: "/todos",
-      BY_ID: (id: string) => `/todos/${id}`,
+      BASE: `${API_URL}/todos`,
+      BY_ID: (id: string) => `${API_URL}/todos/${id}`,
     },
   },
 } as const;
