@@ -1,6 +1,6 @@
 import { FormInput } from "@/shared/components/Form";
 import { COLORS, FONTS } from "@/shared/constants";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { CONFIG } from "@/shared/constants/config";
@@ -38,6 +39,7 @@ function formReducer(state: FormState, action: FormAction): FormState {
 
 export const Login = () => {
   const [form, dispatch] = useReducer(formReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   function handleChange(field: keyof FormState) {
@@ -45,11 +47,16 @@ export const Login = () => {
   }
 
     async function handleLogin(){
+        if (isLoading) return;
+
+        setIsLoading(true);
         try {
             await loginUser({email: form.email, password: form.password});
             router.push(CONFIG.ROUTES.HOME);
         } catch (error) {
-            throw new Error(error instanceof Error ? error.message : "An unknown error occurred");
+            alert(error instanceof Error ? error.message : "An unknown error occurred");
+        } finally {
+            setIsLoading(false);
         }
   }
 
@@ -91,11 +98,16 @@ export const Login = () => {
             </View>
 
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, isLoading && styles.buttonDisabled]}
               onPress={handleLogin}
               activeOpacity={0.8}
+              disabled={isLoading}
             >
-              <Text style={styles.buttonText}>Login</Text>
+              {isLoading ? (
+                <ActivityIndicator color={COLORS.text.white} />
+              ) : (
+                <Text style={styles.buttonText}>Login</Text>
+              )}
             </TouchableOpacity>
 
             <View style={styles.footer}>
@@ -160,6 +172,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
   },
   buttonText: {
     color: "#FFF",

@@ -6,6 +6,7 @@ export interface User {
 
 export interface AuthResponse {
   accessToken: string;
+  refreshTOken: string;
   user: User;
 }
 
@@ -24,6 +25,7 @@ export interface RegisterRequest {
 export interface AuthState {
   user: User | null;
   accessToken: string | null;
+  refrehsToken: string | null;
   loading: boolean;
   error: string | null;
   isAuthenticated: boolean;

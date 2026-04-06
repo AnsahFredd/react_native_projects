@@ -16,6 +16,10 @@ export const loginUser = async (credentials: LoginRequest) => {
             throw new Error("Invalid access token");
         }
 
+        if(!response.refreshTOken) {
+            throw new Error("Invalid access token!");
+        }
+
         return response;
 
     } catch (error) {

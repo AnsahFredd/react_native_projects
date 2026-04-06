@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CONFIG } from "@/shared/constants/config";
 
-const { height } = Dimensions.get("window");
+// const { height } = Dimensions.get("window");
 
 export default function Index() {
   const router = useRouter();

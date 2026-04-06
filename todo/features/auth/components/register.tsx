@@ -1,6 +1,6 @@
 import { FormInput } from "@/shared/components/Form";
 import { COLORS, FONTS } from "@/shared/constants";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import {
   View,
   Text,
@@ -11,8 +11,9 @@ import {
   Platform,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { CONFIG } from "@/shared/constants/config";
 import { RegisterUser } from "../services/auth_service";
 
@@ -41,12 +42,16 @@ function formReducer(state: FormState, action: FormAction): FormState {
 
 export const Register = () => {
   const [form, dispatch] = useReducer(formReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   function handleChange(field: keyof FormState) {
     return (text: string) => dispatch({ field, value: text });
   }
 
   async function handleRegister() {
+    if (isLoading) return;
+    setIsLoading(true);
     try {
       await RegisterUser({
         name: form.name,
@@ -54,10 +59,11 @@ export const Register = () => {
         password: form.password,
         confirmPassword: form.confirmPassword,
       });
+      router.push(CONFIG.ROUTES.HOME);
     } catch (error) {
-      throw new Error(
-        error instanceof Error ? error.message : "An unknown error occurred",
-      );
+      alert(error instanceof Error ? error.message : "An unknown error occurred");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -110,11 +116,16 @@ export const Register = () => {
             </View>
 
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, isLoading && styles.buttonDisabled]}
               onPress={handleRegister}
               activeOpacity={0.8}
+              disabled={isLoading}
             >
-              <Text style={styles.buttonText}>Register</Text>
+              {isLoading ? (
+                <ActivityIndicator color={COLORS.text.white} />
+              ) : (
+                <Text style={styles.buttonText}>Register</Text>
+              )}
             </TouchableOpacity>
 
             <View style={styles.footer}>
@@ -175,6 +186,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
   },
   buttonText: {
     color: "#FFF",
