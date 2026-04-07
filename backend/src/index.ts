@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tasks", taskRoutes);
 
-// Define routes here
+// Define main routes here
 app.get("/", (_: Request, res: Response) => {
   res.send("OK!");
 });

@@ -1,8 +1,8 @@
 import { Router } from "express";
-
-const taskRoutes = Router();
 import { authMiddleware } from "../middleware/auth_middleware";
 import { createTaskController, updateTaskController, deleteTaskController } from "../controllers/task_controller";
+
+const taskRoutes = Router();
 
 
 taskRoutes.post("/", authMiddleware, createTaskController);
